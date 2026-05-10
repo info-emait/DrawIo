@@ -2,6 +2,7 @@
     "files.exclude": {
         ".vscode": true,
         "node_modules": true,
+        "dist": true,
         ".gitignore": true,
         "package-lock.json": true
     }
