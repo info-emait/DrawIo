@@ -1,5 +1,15 @@
 @use "@styles/_functions.scss" as *;
 @use "@styles/_variables.scss" as *;
+@use "azure-devops-ui/Core/core.scss";
+@use "azure-devops-ui/Core/override.scss";
+@use "azure-devops-ui/Components/Icon/FabricIcons.scss";
+@use "azure-devops-ui/Components/Icon/FluentIcons.scss";
+@use "azure-devops-ui/Components/Header/Header.scss";
+@use "azure-devops-ui/Components/Button/Button.scss";
+@use "azure-devops-ui/Components/Button/ExpandableButton.scss";
+@use "azure-devops-ui/Components/Menu/Menu.scss";
+@use "azure-devops-ui/Components/Menu/MenuButton.scss";
+@use "azure-devops-ui/Components/Page/Page.scss";
 
 html, body {
     height: 100%;
@@ -11,5 +21,4 @@ html, body {
 }
 
 .drawio-hub {
-    color: red
 }

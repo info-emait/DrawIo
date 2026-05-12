@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
             outDir: "dist",
             emptyOutDir: true,
             sourcemap: false,
+            cssMinify: "esbuild",
             rolldownOptions: {
                 input: {
                     hub: resolve(__dirname, "hub.html")
