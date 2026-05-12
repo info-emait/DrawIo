@@ -26,6 +26,17 @@
                 "panel": "new"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "package",
+            "detail": "Pack application",
+            "type": "npm",
+            "script": "package",
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            },
+            "problemMatcher": []
         }
     ]
 }
