@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 "@": resolve(__dirname, "src"),
-                "@utils": resolve(__dirname, "src/js/utils"),
+                "@utils": resolve(__dirname, "src/utils"),
                 "@components": resolve(__dirname, "src/js/components"),
                 "@bindings": resolve(__dirname, "src/js/bindings"),
                 "@styles": resolve(__dirname, "src/styles")

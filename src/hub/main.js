@@ -1,3 +1,5 @@
+import { log } from "@utils";  
+
 //#region [ Fields ]
 
 const doc = document;
