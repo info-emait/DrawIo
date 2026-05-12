@@ -16,4 +16,4 @@ fs.writeFileSync(
     manifest
 );
 
-console.log("vss-extension.json generated");
+console.log("Manifest vss-extension.json generated");

@@ -12,10 +12,10 @@
     },
     "scripts": {
         "dev": "vite",
+        "prebuild": "npm version patch --no-git-tag-version",
         "build": "vite build && node scripts/generateExtensionManifest.js",
         "preview": "vite preview",
-        "prepackage": "npm version patch --no-git-tag-version",
-        "package": "tfx extension create --root dist --manifest-globs vss-extension.json --output-path dist"
+        "package": "tfx extension create --root dist --manifest-globs vss-extension.json --output-path dist && node scripts/cleanupDist.js"
     },
     "devDependencies": {
         "sass": "1.99.0",
