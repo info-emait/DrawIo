@@ -5,5 +5,5 @@
  * @param {object} args Message arguments.
  */
 export function log(msg, ...args) {
-    console.debug(`[log] ${msg}`, ...args);
+    console.debug(`[${import.meta.env.VITE_APP_TITLE}] ${msg}`, ...args);
 }

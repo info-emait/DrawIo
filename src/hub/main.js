@@ -1,4 +1,5 @@
-import { log } from "@utils";  
+import * as sdk from "azure-devops-extension-sdk";
+import { log } from "@utils";
 
 //#region [ Fields ]
 
@@ -28,7 +29,7 @@ const ready = (fn) => {
 
 //#region [ Start ]
 
-ready(() => {
+ready(async () => {
     if (import.meta.env.DEV) {
         log("Running application in DEV mode");
     }
@@ -37,9 +38,25 @@ ready(() => {
         log("Running application in PROD mode");
     }    
     
-    const title = import.meta.env.VITE_APP_TITLE;
+    sdk.init({                        
+        loaded: false,
+        applyTheme: true
+    });
+    log("SDK initializated");
 
-    log(`${title}`);
+    await sdk.ready();
+    log("SDK ready");
+
+    // Register hub
+    const model = { x: "test" };
+    sdk.register("drawio-hub", function () {                
+        return model;
+    });
+
+    // Start application and init application
+    //ko.applyBindings(model, doc.body);
+    sdk.notifyLoadSucceeded();
+    //model.init().then(() => model.isLoading(false));
 });
 
 //#endregion
