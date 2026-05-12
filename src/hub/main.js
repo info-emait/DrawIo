@@ -1,57 +1,26 @@
+import "./hub.scss";
 import * as sdk from "azure-devops-extension-sdk";
-import { log } from "@utils";
-
-//#region [ Fields ]
-
-const doc = document;
-
-//#endregion
-
-
-//#region [ Methods ]
-
-/**
- * Fires function when DOM is ready.
- *
- * @param {function} fn Function.
- */
-const ready = (fn) => {
-    if (doc.attachEvent ? (doc.readyState === "complete") : (doc.readyState !== "loading")) {
-        fn();
-        return;
-    }
-    
-    doc.addEventListener("DOMContentLoaded", fn);
-};
-
-//#endregion
-
+import { log, ready } from "@utils";
 
 //#region [ Start ]
 
 ready(async () => {
-    if (import.meta.env.DEV) {
-        log("Running application in DEV mode");
-    }
-
-    if (import.meta.env.PROD) {
-        log("Running application in PROD mode");
-    }    
+    log(`Running application in ${import.meta.env.PROD ? "PROD" : import.meta.env.DEV ? "DEV" : "UNKNOWN"} mode.`);
     
     sdk.init({                        
         loaded: false,
         applyTheme: true
     });
-    log("SDK initializated");
+    log("Sdk is initializated.");
 
     await sdk.ready();
-    log("SDK ready");
+    log("Sdk is ready.");
 
-    // Register hub
     const model = { x: "test" };
     sdk.register("drawio-hub", function () {                
         return model;
     });
+    log("Hub is registered.");
 
     // Start application and init application
     //ko.applyBindings(model, doc.body);
