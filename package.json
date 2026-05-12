@@ -1,20 +1,21 @@
 {
-    "name": "@emait/drawio",
+    "name": "drawio",
     "description": "This extension brings draw.io directly into Azure DevOps, so you can view, create and edit your diagrams.",
     "version": "0.0.0",
     "author": "emait",
     "private": true,
     "type": "module",
     "icon": "https://martinsutka.github.io/icongenerator/#dGl0bGU9ZHJhd2lvJmpzb249eyJzaG93R3VpZGVzIjp0cnVlLCJnxQ5TaXplIjo2NMgQWCI6MMgMWcUMaWNvbsYmNzTGDsYkxApZIjoyxgpDb2xvciI6IiNmZmMzMTQixzhoYWRvd8scxAHNHMZaNDjMFEludGVuc2l0eSI6McdpU3ZnIjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgd2lkdGg9XCIyNFwiIGhlaWdodMgOdmlld0JveD1cIjAgMCAyNCDEFj48cGF0aCBmaWxsPVwiY3VycmVudOUAuFwiIGQ9XCJNOS43NSAyMC44NWMxLjc4LS43IDEuMzktMi42My40OS0zxBotLjg5LTEuMjUtMi4xMsQFMS0zLjM2LTIuOTRBOS44IMQExHgxIDQuNTQgMTJjLS4yOC0uMzMtLjg1LS45NC0uMjctMS4wNmMuNTktLjEyIDEuNjEuNDYgMi4xMy42OGMuOTEuMzggMS44MS44MiAyLjY15ACMNGwxLjAxLTEuN0M4LjUgMTAuMjMgNi41IDkuMzIgNC42NCA5LjA1Y8VdLS4x5ACWMTjEDDLlAIsuMjFjLS4zMi45OS4xOSAxxAg3NyAyLjc3YzEuM+QA8DgzIDMuNcQTMSA1LjA5IDQuMjljLjM0LjMzLjc1LjcyLjnkAIwxOGMuMjEuNDQuMTYuNDctLjMxLjQ3xHoyNCAwLTIuNzktLjk35AE1LeQA3mzkAJQxIDEuxGo1My45NCA0xF8yLjTEaTk2xBs5bTExLjA5LTE1LjZjLjIyLS4yMsUHNTggMC0uNznERjPEBGEuNTYuNTblAWnEGjggMMVi5AFLMDJsMi4wOCDEBU0xMeQBJzkyVjEzaMQRbDYuMTUtxAVsLcQQxQV6XCIvPjzkAlk+5AK7c0JhY2tncm91bmRUcmFuc3Bh5AIsIjpmYWxzZSwiYskeV+QChCI6MTI4zBZI5QKN0RfpAyQyNMQCIswcTMQyySE3ZMQC0iHrAzY1Ncwe7wOFMMUBzUDtA4vMGUJvcmRlclJhZGl1cyI6NuQDjXNCYWRnZfYA+mRnZfID7MUX6gE0ySFhMGM1OTjIIVRleHQiOiLID0ZvxFkiNzAwIDE2cHggQXJpYWzIHeYAqTI0fQ==",
-    
     "repository": {
         "type": "git",
         "url": "https://github.com/info-emait/DrawIo"
     },
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview" 
+        "build": "vite build && node scripts/generateExtensionManifest.js",
+        "preview": "vite preview",
+        "prepackage": "npm version patch --no-git-tag-version",
+        "package": "tfx extension create --root dist --manifest-globs vss-extension.json --output-path dist"
     },
     "devDependencies": {
         "sass": "1.99.0",
