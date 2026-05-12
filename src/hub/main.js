@@ -35,10 +35,9 @@ ready(() => {
         log("Running application in PROD mode");
     }    
     
-    const version = import.meta.env.VITE_APP_VERSION;
     const title = import.meta.env.VITE_APP_TITLE;
 
-    log(`${title} v${version}`);
+    log(`${title}`);
 });
 
 //#endregion
