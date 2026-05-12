@@ -66,14 +66,15 @@
         }
     }, {
         "id": "#{Id}#-hub",
-        "type": "ms.vss-web.tab",
+        "type": "ms.vss-web.hub",
         "targets": [
-            "ms.vss-work-web.query-tabs"
+            "ms.vss-web.home-hub-group"
         ],
         "properties": {
             "uri": "hub.html?v=#{Version}#",
-            "title": "Draw.io hub",
-            "name": "Draw.io"
+            "name": "Draw.io",
+            "iconName": "FlowChart",
+            "order": 1
         },
         "constraints": [{
             "name": "Feature",
