@@ -15,6 +15,17 @@
                 "panel": "new"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "detail": "Build application",
+            "type": "npm",
+            "script": "build",
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            },
+            "problemMatcher": []
         }
     ]
 }
