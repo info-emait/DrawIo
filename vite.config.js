@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
             sourcemap: false,
             rolldownOptions: {
                 input: {
-                    hub: resolve(__dirname, "src/hub/index.html")
+                    hub: resolve(__dirname, "hub.html")
                 }
             }
         },
