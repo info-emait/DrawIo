@@ -1,0 +1,29 @@
+import ko from "@tko/build.reference";
+
+/**
+ * Registers the input Model as knockout component.
+ *
+ * @param {string} name Component name.
+ * @param {function} model Component constructor.
+ * @param {string} template Template name.
+ */
+export function registerComponent(name, model, template) {
+    if (registerComponent._registry.has(name)) {
+        return;
+    }
+
+    registerComponent._registry.add(name);
+    ko.components.register(name, {
+        template,
+        viewModel: { 
+            createViewModel: (params, componentInfo) => {
+                params = params || {};
+                params.element = componentInfo.element.querySelector ? componentInfo.element : componentInfo.element.parentElement || componentInfo.element.parentNode;
+            
+                return new model(params);
+            }
+        }
+    });
+}
+
+registerComponent._registry = new Set();
