@@ -1,4 +1,5 @@
 import * as sdk from "azure-devops-extension-sdk";
+import * as api from "azure-devops-extension-api";
 import ko from "@tko/build.reference";
 import { log, ready } from "@utils";
 import "./main.scss";
@@ -18,10 +19,15 @@ ready(async () => {
     await sdk.ready();
     log("Sdk is ready.");
 
+    const hostSvc = await sdk.getService(api.CommonServiceIds.HostNavigationService);
+    const query = await hostSvc.getQueryParams();
+
     // Create application model
     const model = {
-        title: import.meta.env.VITE_TITLE
+        title: import.meta.env.VITE_APP_TITLE,
+        isFullScreen: (query["fullScreen"] === "true") ? true : (query["fullScreen"] === "false") ? false : false
     };
+    
     sdk.register("drawio-hub", () => model);
     log("Hub is registered.");
 

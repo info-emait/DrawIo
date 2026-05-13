@@ -14,8 +14,9 @@ export class ViewModel {
      */
     constructor (args = {}) {
         log("Hub()", this);
-
+        
         this.title = ko.observable(args.title || "");
+        this.isFullScreen = ko.observable(args.isFullScreen);
     }
 
     //#endregion

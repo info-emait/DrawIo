@@ -19,7 +19,7 @@ export function registerComponent(name, model, template) {
             createViewModel: (params, componentInfo) => {
                 params = params || {};
                 params.element = componentInfo.element.querySelector ? componentInfo.element : componentInfo.element.parentElement || componentInfo.element.parentNode;
-            
+                
                 return new model(params);
             }
         }
