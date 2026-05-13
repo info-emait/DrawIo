@@ -1,7 +1,7 @@
 {
     "name": "drawio",
     "description": "This extension brings draw.io directly into Azure DevOps, so you can view, create and edit your diagrams.",
-    "version": "0.0.36",
+    "version": "0.0.45",
     "author": "emait",
     "private": true,
     "type": "module",
@@ -26,6 +26,7 @@
     "dependencies": {
         "azure-devops-extension-api": "5.271.0",
         "azure-devops-extension-sdk": "4.2.0",
-        "azure-devops-ui": "2.272.0"
+        "azure-devops-ui": "2.272.0",
+        "@tko/build.reference": "4.1.0"
     }
 }
