@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
                 "@": resolve(__dirname, "src"),
                 "@utils": resolve(__dirname, "src/utils"),
                 "@styles": resolve(__dirname, "src/styles"),
-                "@components": resolve(__dirname, "src/js/components"),
-                "@bindings": resolve(__dirname, "src/js/bindings")
+                "@components": resolve(__dirname, "src/components"),
+                "@bindings": resolve(__dirname, "src/bindings")
             }
         },
         css: {
