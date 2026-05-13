@@ -19,13 +19,13 @@ ready(async () => {
     await sdk.ready();
     log("Sdk is ready.");
 
-    const hostSvc = await sdk.getService(api.CommonServiceIds.HostNavigationService);
-    const query = await hostSvc.getQueryParams();
+    const host = await sdk.getService(api.CommonServiceIds.HostNavigationService);
+    const query = await host.getQueryParams();
 
     // Create application model
     const model = {
         title: import.meta.env.VITE_APP_TITLE,
-        isFullScreen: (query["fullScreen"] === "true") ? true : (query["fullScreen"] === "false") ? false : false
+        isFullScreen: (query["fullScreen"] === "true") ? true : false
     };
     
     sdk.register("drawio-hub", () => model);

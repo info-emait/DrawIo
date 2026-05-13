@@ -9,9 +9,11 @@
             <div class="flex-self-start bolt-header-commandbar bolt-button-group flex-row">
                 <div class="flex-self-start bolt-header-commandbar-button-group flex-row flex-center flex-grow scroll-hidden rhythm-horizontal-8">
                     <div class="bolt-header-command-item-button bolt-expandable-button inline-flex-row">
-                        <button class="icon-only bolt-button bolt-icon-button enabled subtle icon-only bolt-focus-treatment" tabindex="0" type="button">
+                        <button class="icon-only bolt-button bolt-icon-button enabled subtle icon-only bolt-focus-treatment" tabindex="0" type="button"
+                                data-bind="click: fullscreen, attr: { title: isFullScreen() ? 'Exit full screen mode' : 'Enter full screen mode'}">
                             <span class="fluent-icons-enabled">
-                                <span aria-hidden="true" class="left-icon flex-noshrink fabric-icon medium ms-Icon--FullScreen"></span>
+                                <span aria-hidden="true" class="left-icon flex-noshrink fabric-icon medium"
+                                      data-bind="css: { 'ms-Icon--FullScreen': !isFullScreen(), 'ms-Icon--BackToWindow': isFullScreen() }"></span>
                             </span>
                         </button>
                     </div>
