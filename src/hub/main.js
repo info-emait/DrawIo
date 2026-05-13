@@ -1,6 +1,8 @@
-import "./hub.scss";
 import * as sdk from "azure-devops-extension-sdk";
+import ko from "@tko/build.reference";
 import { log, ready } from "@utils";
+import "./main.scss";
+import "@components/hub/component.js";
 
 //#region [ Start ]
 
@@ -16,16 +18,16 @@ ready(async () => {
     await sdk.ready();
     log("Sdk is ready.");
 
-    const model = { x: "test" };
-    sdk.register("drawio-hub", function () {                
-        return model;
-    });
+    // Create application model
+    const model = {
+        title: import.meta.env.VITE_TITLE
+    };
+    sdk.register("drawio-hub", () => model);
     log("Hub is registered.");
 
     // Start application and init application
-    //ko.applyBindings(model, doc.body);
+    ko.applyBindings(model, document.body);
     sdk.notifyLoadSucceeded();
-    //model.init().then(() => model.isLoading(false));
 });
 
 //#endregion
