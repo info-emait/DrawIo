@@ -85,8 +85,8 @@
     }],
     "files": [
         { "path": "hub.html", "addressable": true },
-        { "path": "assets", "addressable": true },
-        { "path": "img", "addressable": true }
+        { "path": "img", "addressable": true },
+        { "path": "assets", "addressable": true }
     ],
     "scopes":[
         "vso.work",

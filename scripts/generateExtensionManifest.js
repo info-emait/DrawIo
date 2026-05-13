@@ -3,17 +3,24 @@ import path from "path";
 
 const root = process.cwd();
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
-let manifest = fs.readFileSync(path.join(root, "manifests", "vss-extension.json"), "utf-8");
-
-manifest = manifest
+const manifestJson = JSON.parse(fs.readFileSync(path.join(root, "vss-extension.json"), "utf-8")
     .replaceAll("#{Id}#", packageJson.name)
     .replaceAll("#{Version}#", packageJson.version)
     .replaceAll("#{Publisher}#", packageJson.author)
-    .replaceAll("#{Description}#", packageJson.description);
+    .replaceAll("#{Description}#", packageJson.description));
+
+// const woff2Files = fs.readdirSync(path.join(root, "dist", "assets")).filter(f => f.endsWith(".woff2"));
+// woff2Files.forEach((file) => {
+//     manifestJson.files.push({
+//         path: `assets/${file}`,
+//         addressable: true,
+//         contentType: "application/x-font-woff2"
+//     });
+// });
 
 fs.writeFileSync(
     path.join(root, "dist", "vss-extension.json"),
-    manifest
+    JSON.stringify(manifestJson, null, 2)
 );
 
 console.log("Manifest vss-extension.json generated");
