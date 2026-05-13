@@ -28,6 +28,17 @@
             "problemMatcher": []
         },
         {
+            "label": "debug",
+            "detail": "Debug application",
+            "type": "npm",
+            "script": "debug",
+            "group": "build",
+            "presentation": {
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "package",
             "detail": "Pack application",
             "type": "npm",

@@ -3,14 +3,16 @@ import { resolve } from "path";
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
+    const isDebug = mode === "debug";
 
     return {
         base: env.VITE_APP_BASE_URL || "./",
         build: {
             outDir: "dist",
             emptyOutDir: true,
-            sourcemap: false,
-            cssMinify: "esbuild",
+            sourcemap: isDebug,
+            minify: isDebug ? false : "esbuild",
+            cssMinify: isDebug ? false : "esbuild",
             rolldownOptions: {
                 input: {
                     hub: resolve(__dirname, "hub.html")
