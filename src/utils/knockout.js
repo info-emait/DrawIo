@@ -27,3 +27,21 @@ export function registerComponent(name, model, template) {
 }
 
 registerComponent._registry = new Set();
+
+
+/**
+ * Registers the input Model as knockout component.
+ *
+ * @param {string} name Component name.
+ * @param {object} handler Handler implementation.
+ */
+export function registerBinding(name, handler) {
+    if (registerBinding._registry.has(name)) {
+        return;
+    }
+
+    registerBinding._registry.add(name);
+    ko.bindingHandlers[name] = handler;
+}
+
+registerBinding._registry = new Set();
