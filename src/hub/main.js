@@ -1,6 +1,6 @@
 import * as sdk from "azure-devops-extension-sdk";
 import { CommonServiceIds } from "azure-devops-extension-api";
-import ko from "@tko/build.reference";
+import * as ko from "knockout";
 import { log, ready } from "@utils";
 import "./main.scss";
 import "@components/hub/component.js";
@@ -32,8 +32,8 @@ ready(async () => {
     log("Hub is registered.");
 
     // Start application and init application
-    ko.applyBindings(model, document.body);
     sdk.notifyLoadSucceeded();
+    ko.applyBindings(model, document.body);
 });
 
 //#endregion
