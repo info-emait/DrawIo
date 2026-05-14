@@ -93,5 +93,10 @@ export async function get(uri, query) {
         }
     };
     
-    return fetch(`${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}${uri}?${new URLSearchParams(query || {})}`, prms);
+    const response = await fetch(`${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}${uri}?${new URLSearchParams(query || {})}`, prms);
+    if (!response.ok) {
+        return null;
+    }
+
+    return response.json();
 }

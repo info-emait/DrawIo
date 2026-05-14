@@ -2,7 +2,7 @@ import * as sdk from "azure-devops-extension-sdk";
 import { CommonServiceIds } from "azure-devops-extension-api";
 import { log } from "@utils";
 import * as devops from "@utils/devops";
-import ko from "@tko/build.reference";
+import * as ko from "knockout";
 
 /**
  * View model for the Hub component.
@@ -21,13 +21,21 @@ export class ViewModel {
         this.title = ko.observable(args.title || "");
         this.isFullScreen = ko.observable(args.isFullScreen);
 
-        
-        devops.get("/_apis/git/Repositories", {
-            includeLinks: false,
-            includeAllUrls: false,
-            includeHidden: true
-        }).then((response) => response.ok ? response.json() : null)
-        .then((xxx) => console.warn("xxx: ", xxx));
+        this.repos = ko.observableArray([]);
+    }
+
+    //#endregion
+
+
+    //#region [ Methods : Private ]
+
+    /**
+     * Loads list of project repositories.
+     */
+    async _loadRepos () {
+        const response = await devops.get("/_apis/git/Repositories", { includeHidden: true });
+
+        this.repos(response?.value || []);
     }
 
     //#endregion
@@ -39,17 +47,14 @@ export class ViewModel {
      * Switch between fullscreen and normal screen.
      */
     async fullscreen () {
-        this.isFullScreen(!this.isFullScreen());
-        
         const host = await sdk.getService(CommonServiceIds.HostNavigationService);
 
         const query = await host.getQueryParams();
-        query.fullScreen = this.isFullScreen();
+        query.fullScreen = !this.isFullScreen();
         
         const ctx = await devops.context();
-
-        const uri = `${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}/_apps/hub/${ctx.extension.id}.${ctx.extension.extensionId}-hub?${new URLSearchParams(query).toString()}`;
-        host.navigate(uri);
+        host.navigate(`${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}/_apps/hub/${ctx.extension.id}.${ctx.extension.extensionId}-hub?${new URLSearchParams(query).toString()}`);
+        this.isFullScreen(!this.isFullScreen());
     }    
 
 
@@ -62,6 +67,8 @@ export class ViewModel {
     koDescendantsComplete (node) {
         const root = node.firstElementChild;
         node.replaceWith(root);
+
+        this._loadRepos();
     }
 
 
