@@ -2,7 +2,7 @@ import * as sdk from "azure-devops-extension-sdk";
 import { CommonServiceIds } from "azure-devops-extension-api";
 import * as ko from "knockout";
 import { log, ready } from "@utils";
-import "./main.scss";
+
 import "@components/hub/component.js";
 
 //#region [ Start ]
