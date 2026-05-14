@@ -1,6 +1,7 @@
 import * as sdk from "azure-devops-extension-sdk";
-import * as api from "azure-devops-extension-api";
-import { log, getDevOpsContext } from "@utils";
+import { CommonServiceIds } from "azure-devops-extension-api";
+import { log } from "@utils";
+import * as devops from "@utils/devops";
 import ko from "@tko/build.reference";
 
 /**
@@ -19,6 +20,14 @@ export class ViewModel {
         
         this.title = ko.observable(args.title || "");
         this.isFullScreen = ko.observable(args.isFullScreen);
+
+        
+        devops.get("/_apis/git/Repositories", {
+            includeLinks: false,
+            includeAllUrls: false,
+            includeHidden: true
+        }).then((response) => response.ok ? response.json() : null)
+        .then((xxx) => console.warn("xxx: ", xxx));
     }
 
     //#endregion
@@ -31,13 +40,13 @@ export class ViewModel {
      */
     async fullscreen () {
         this.isFullScreen(!this.isFullScreen());
-
-        const host = await sdk.getService(api.CommonServiceIds.HostNavigationService);
+        
+        const host = await sdk.getService(CommonServiceIds.HostNavigationService);
 
         const query = await host.getQueryParams();
         query.fullScreen = this.isFullScreen();
         
-        const ctx = await getDevOpsContext();
+        const ctx = await devops.context();
 
         const uri = `${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}/_apps/hub/${ctx.extension.id}.${ctx.extension.extensionId}-hub?${new URLSearchParams(query).toString()}`;
         host.navigate(uri);

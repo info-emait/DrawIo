@@ -1,5 +1,5 @@
 import * as sdk from "azure-devops-extension-sdk";
-import * as api from "azure-devops-extension-api";
+import { CommonServiceIds } from "azure-devops-extension-api";
 import ko from "@tko/build.reference";
 import { log, ready } from "@utils";
 import "./main.scss";
@@ -19,7 +19,7 @@ ready(async () => {
     await sdk.ready();
     log("Sdk is ready.");
 
-    const host = await sdk.getService(api.CommonServiceIds.HostNavigationService);
+    const host = await sdk.getService(CommonServiceIds.HostNavigationService);
     const query = await host.getQueryParams();
 
     // Create application model
