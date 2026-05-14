@@ -1,4 +1,4 @@
-import ko from "@tko/build.reference";
+import * as ko from "knockout";
 
 /**
  * Registers the input Model as knockout component.
