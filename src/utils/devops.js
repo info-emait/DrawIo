@@ -100,3 +100,19 @@ export async function get(uri, query) {
 
     return response.json();
 }
+
+
+/**
+ * Returns true if current user can use git.
+ * @returns Boolean.
+ */
+export async function canUseGit() {
+    try {
+        const response = await get("/_apis/git/repositories", { "$top": 1 });
+        const count = response?.count || 0;
+        return count > 0;
+    }
+    catch (e) {
+        return false;
+    }
+}

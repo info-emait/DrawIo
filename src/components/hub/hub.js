@@ -22,6 +22,8 @@ export class ViewModel {
         this.isFullScreen = ko.observable(args.isFullScreen);
 
         this.repos = ko.observableArray([]);
+        //console.warn("user:", sdk.getUser());
+        //devops.canUseGit().then((x) => console.warn("can use git:", x));
     }
 
     //#endregion
@@ -33,7 +35,7 @@ export class ViewModel {
      * Loads list of project repositories.
      */
     async _loadRepos () {
-        const response = await devops.get("/_apis/git/Repositories", { includeHidden: true });
+        const response = await devops.get("/_apis/git/repositories", { includeHidden: true });
 
         this.repos(response?.value || []);
     }
