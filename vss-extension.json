@@ -91,6 +91,7 @@
     "scopes":[
         "vso.work",
         "vso.work_write",
+        "vso.code",
         "vso.code_write",
         "vso.code_status"
     ]
