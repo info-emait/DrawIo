@@ -1,0 +1,7 @@
+@use "@styles/_functions.scss" as *;
+
+.tree {
+    width: rem(320px);
+    overflow-y: auto;
+    margin-right: rem(16px);
+}
