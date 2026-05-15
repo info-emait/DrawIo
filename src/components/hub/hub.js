@@ -24,6 +24,7 @@ export class ViewModel {
         this.user = ko.observable(sdk.getUser());
         this.canUseGit = ko.observable(null);
         this.repos = ko.observableArray([]);
+        this.repoId = ko.observable(null);
     }
 
     //#endregion

@@ -5,6 +5,7 @@ import { log, ready } from "@utils";
 
 import "@components/hub/component.js";
 import "@components/zerodata/component.js";
+import "@components/input/component.js";
 
 //#region [ Start ]
 

@@ -8,7 +8,12 @@
             </div>
             <div class="flex-self-start bolt-header-commandbar bolt-button-group flex-row">
                 <div class="flex-self-start bolt-header-commandbar-button-group flex-row flex-center flex-grow scroll-hidden rhythm-horizontal-8">
-                    <div class="bolt-header-command-item-button bolt-expandable-button inline-flex-row">
+                    <!-- ko if: canUseGit() -->
+                        <div class="bolt-header-command-item-button bolt-expandable-button inline-flex-row">
+                            <my-input params="value: repoId, type: 'select', options: repos, optionsCaption: '... choose repository', optionsText: 'name', optionsValue: 'id', classes: 'input--select input--menu input--width-auto'"></my-input>
+                        </div>
+                    <!-- /ko -->
+                    <div class="bolt-header-command-item-button inline-flex-row">
                         <button class="icon-only bolt-button bolt-icon-button enabled subtle icon-only bolt-focus-treatment" tabindex="0" type="button"
                                 data-bind="click: fullscreen, attr: { title: isFullScreen() ? 'Exit full screen mode' : 'Enter full screen mode'}">
                             <span class="fluent-icons-enabled">
@@ -26,9 +31,7 @@
             <!-- ko if: canUseGit() === false -->
                 <my-zerodata params="title: 'No repositories found', text: 'Either you have been assigned Stakeholder access or there are not any repositories in the project. Please contact your administrator.'"></my-zerodata>
             <!-- /ko -->
-            <!-- ko if: canUseGit() -->
-                TODO
-            <!-- /ko -->
+
         </div>
     </div>
 </div>
