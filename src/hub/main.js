@@ -4,6 +4,7 @@ import * as ko from "knockout";
 import { log, ready } from "@utils";
 
 import "@components/hub/component.js";
+import "@components/zerodata/component.js";
 
 //#region [ Start ]
 

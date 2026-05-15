@@ -21,15 +21,30 @@ export class ViewModel {
         this.title = ko.observable(args.title || "");
         this.isFullScreen = ko.observable(args.isFullScreen);
 
+        this.user = ko.observable(sdk.getUser());
+        this.canUseGit = ko.observable(null);
         this.repos = ko.observableArray([]);
-        //console.warn("user:", sdk.getUser());
-        //devops.canUseGit().then((x) => console.warn("can use git:", x));
     }
 
     //#endregion
 
 
     //#region [ Methods : Private ]
+
+    /**
+     * Checks whether the current user can use git.
+     */
+    async _init () {
+        const canUseGit = await devops.canUseGit();
+        this.canUseGit(canUseGit);
+
+        if (!canUseGit) {
+            return;
+        }
+
+        this._loadRepos();
+    }
+
 
     /**
      * Loads list of project repositories.
@@ -70,7 +85,7 @@ export class ViewModel {
         const root = node.firstElementChild;
         node.replaceWith(root);
 
-        this._loadRepos();
+        this._init();
     }
 
 

@@ -23,10 +23,12 @@
     </div>
     <div class="page-content">
         <div class="flex-row margin-top-16">
-            TODO
-            <div data-bind="foreach: repos">
-                <span data-bind="text: name"></span><br>
-            </div>
+            <!-- ko if: canUseGit() === false -->
+                <my-zerodata params="title: 'No repositories found', text: 'Either you have been assigned Stakeholder access or there are not any repositories in the project. Please contact your administrator.'"></my-zerodata>
+            <!-- /ko -->
+            <!-- ko if: canUseGit() -->
+                TODO
+            <!-- /ko -->
         </div>
     </div>
 </div>
