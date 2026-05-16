@@ -4,7 +4,7 @@
 @use "azure-devops-ui/Components/TreeEx/TreeExpand.scss";
 
 .tree {
-    width: rem(320px);
+    width: rem(300px);
     overflow-y: auto;
     margin-right: rem(16px);
 
@@ -23,6 +23,8 @@
     }
 
     &__table {
+        width: 100%;
+
         colgroup {
             col {
                 &:first-child,

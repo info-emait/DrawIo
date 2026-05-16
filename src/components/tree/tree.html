@@ -25,7 +25,7 @@
     </div>
     <!-- /ko -->
     <script type="text/html" id="item-template">
-        <tr class="bolt-tree-row bolt-table-row bolt-list-row first-row" role="row" tabindex="-1">
+        <tr class="bolt-tree-row bolt-table-row bolt-list-row first-row" role="row" tabindex="-1" data-bind="attr: { title: item.path }">
             <td class="bolt-table-cell-compact bolt-table-cell bolt-list-cell" role="presentation"></td>
             <td class="bolt-tree-cell bolt-table-cell bolt-list-cell" role="gridcell">
                 <div class="bolt-table-cell-content flex-row flex-center">
@@ -44,7 +44,8 @@
                             <span class="icon-margin medium repos-folder-icon flex-noshrink fabric-icon"
                                 data-bind="css: { 'ms-Icon--FabricFolderFill': item.isFolder, 'ms-Icon--Page': !item.isFolder }"></span>
                         </span>
-                        <span class="text-ellipsis body-m" data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
+                        <span class="text-ellipsis body-m"
+                              data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
                     </span>
                 </div>
             </td>
