@@ -82,6 +82,7 @@ export class ViewModel {
             .filter((f) => {
                 return f.path !== "/";
             })
+            .sort((f1, f2) => ((f2.isFolder || false) - (f1.isFolder || false)) || f1.path.localeCompare(f2.path))
             .map((f) => {
                 f.isExpanded = ko.observable(false);
                 if (f.isFolder) {

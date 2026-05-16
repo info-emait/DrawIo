@@ -4,4 +4,18 @@
     width: rem(320px);
     overflow-y: auto;
     margin-right: rem(16px);
+
+    &__expander {
+        visibility: hidden;
+
+        &--visible {
+            visibility: visible;
+        }
+    }
+
+    &__icon {
+        .ms-Icon--FabricFolderFill {
+            color: var(--icon-folder-color, #dcb67a);
+        }
+    }
 }
