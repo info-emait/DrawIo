@@ -48,7 +48,7 @@ export class ViewModel {
         });
         const files = (response?.value || [])
             .filter((f) => {
-                return f.path !== "/";
+                return (f.path !== "/") && (f.path !== parent?.path);
             })
             .sort((f1, f2) => ((f2.isFolder || false) - (f1.isFolder || false)) || f1.path.localeCompare(f2.path))
             .map((f) => {
