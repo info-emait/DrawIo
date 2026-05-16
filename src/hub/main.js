@@ -6,6 +6,7 @@ import { log, ready } from "@utils";
 import "@components/hub/component.js";
 import "@components/zerodata/component.js";
 import "@components/menu/component.js";
+import "@components/tree/component.js";
 
 //#region [ Start ]
 
