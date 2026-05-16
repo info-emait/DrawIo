@@ -26,8 +26,6 @@ export class ViewModel {
         this.repos = ko.observableArray([]);
         this.repoId = ko.observable(null);
         this.files = ko.observableArray([]);
-
-        this.loadFiles = ko.computed(this._loadFiles, this);
     }
 
     //#endregion
@@ -57,46 +55,6 @@ export class ViewModel {
         const response = await devops.get("/_apis/git/repositories", { includeHidden: true });
 
         this.repos(response?.value || []);
-    }
-
-
-    /**
-     * Loads list of files for the selected repository.
-     * 
-     * @param {object} parent Parent node.
-     */
-    async _loadFiles (parent) {
-        const repoId = this.repoId();
-
-        if (ko.computedContext.isInitial() || !repoId) {
-            this.files([]);
-            return;
-        }
-
-        const response = await devops.get(`/_apis/git/repositories/${repoId}/items`, { 
-            "scopePath": "/",
-            "$format": "json",
-            "recursionLevel": "oneLevel"
-        });
-        const files = (response?.value || [])
-            .filter((f) => {
-                return f.path !== "/";
-            })
-            .sort((f1, f2) => ((f2.isFolder || false) - (f1.isFolder || false)) || f1.path.localeCompare(f2.path))
-            .map((f) => {
-                f.isExpanded = ko.observable(false);
-                if (f.isFolder) {
-                    f.files = ko.observableArray([]);
-                }
-                return f;
-            });
-
-        if (parent && parent.files) {
-            parent.files(files);
-            return;
-        }
-
-        this.files(files);
     }
 
     //#endregion
@@ -138,8 +96,6 @@ export class ViewModel {
      */
     dispose () {
         log("~Hub()");
-
-        this.loadFiles.dispose();
     };
 
     //#endregion
