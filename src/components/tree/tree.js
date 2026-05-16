@@ -72,13 +72,24 @@ export class ViewModel {
     
     //#region [ Methods : Public ]
 
+    /**
+     * Expands and load children for the input tree node.
+     * 
+     * @param {object} node Tree node.
+     */
     async expand(node) {
         if (!node.isFolder) {
             return;
         }
 
+        if(node.isExpanded()) {
+            node.files([]);
+            node.isExpanded(false);
+            return;
+        }
+
         await this._loadFiles(node);
-        console.warn("expand:", this, node);
+        node.isExpanded(!node.isExpanded());
     }
 
 
