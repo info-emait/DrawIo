@@ -24,6 +24,7 @@ export class ViewModel {
         this.optionsValue = typeof(args.optionsValue) === "string" ? args.optionsValue : "";
         this.optionsIcon = typeof(args.optionsIcon) === "string" ? args.optionsIcon : "";
         this.isActive = ko.isObservable(args.isActive) ? args.isActive : ko.observable(args.isActive || false);
+        this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || "");
 
         this.text = ko.computed(function() {
             const caption = this.caption();

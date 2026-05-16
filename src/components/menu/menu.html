@@ -1,6 +1,6 @@
 <div class="menu bolt-expandable-button inline-flex-row" data-bind="class: classes">
     <button class="bolt-button enabled bolt-focus-treatment" role="button" tabindex="0" type="button"
-            data-bind="css: { 'active': isActive }, click: () => isActive(!isActive())">
+            data-bind="css: { 'active': isActive }, click: () => isActive(!isActive()), css: { 'subtle': type() === 'subtle', 'primary': type() === 'primary' }">
         <span class="bolt-button-text body-m" data-bind="text: text, visible: caption().length"></span>
         <!-- if: icon().length -->
         <span class="fluent-icons-enabled">
