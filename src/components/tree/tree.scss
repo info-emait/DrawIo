@@ -21,4 +21,23 @@
             color: var(--icon-folder-color, #dcb67a);
         }
     }
+
+    &__table {
+        colgroup {
+            col {
+                &:first-child,
+                &:last-child {
+                    width: rem(8px);
+                }
+
+                &:nth-child(2) {
+                    width: 100%;
+                }
+
+                &:nth-child(3) {
+                    width: 42px;
+                }
+            }
+        }
+    }
 }
