@@ -7,6 +7,7 @@ import "@components/hub/component.js";
 import "@components/zerodata/component.js";
 import "@components/menu/component.js";
 import "@components/tree/component.js";
+import "@components/editor/component.js";
 
 //#region [ Start ]
 
