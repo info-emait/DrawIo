@@ -1,5 +1,8 @@
 @use "@styles/_functions.scss" as *;
 
 .editor {
-    color: red;
+    &__renderer {
+        width: 100%;
+        height: 100%;
+    }
 }

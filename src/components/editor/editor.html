@@ -1,3 +1,5 @@
 <div class="editor flex-grow" data-bind="class: classes">
-    TODO : EDITOR
+    <!-- ko if: isVisible -->
+    <iframe class="editor__renderer" frameborder="0" data-bind="attr: { src: drawioUrl }"></iframe>
+    <!-- /ko -->
 </div>
