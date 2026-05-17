@@ -4,5 +4,10 @@
     &__renderer {
         width: 100%;
         height: 100%;
+        opacity: .5;
+
+        &--initialized {
+            opacity: 1;
+        }
     }
 }

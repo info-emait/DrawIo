@@ -17,17 +17,26 @@ export class ViewModel {
     constructor (args = {}) {
         log("Editor()", this);
 
+        this.renderer = null;
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
-        this.isVisible = ko.isObservable(args.isVisible) ? args.isVisible : ko.observable(args.isVisible || false);
+        this.isInitialized = ko.observable(false);
 
-        window.addEventListener("message", this.onMessage);
+        window.addEventListener("message", this.onMessage.bind(this));
     }
 
     //#endregion
 
 
     //#region [ Methods : Public ]
+
+    /**
+     * Event handler for the init event.
+     */
+    onInit () {
+        this.isInitialized(true);
+    }
+
 
     /**
      * Event handler for the message event.
@@ -42,11 +51,13 @@ export class ViewModel {
         try {
             const msg = JSON.parse(e.data);
             log(`Editor : Received message '${JSON.stringify(msg)}'.`);
-            const fnc = this[msg.event];
             
             if (typeof(msg.event) === "undefined") {
                 return;
             }
+
+            const fncKey = "on" + msg.event.charAt(0).toUpperCase() + msg.event.slice(1);
+            const fnc = this[fncKey];
 
             if (typeof(fnc) === "function") {
                 fnc.apply(this, [msg.data]);
@@ -70,6 +81,8 @@ export class ViewModel {
     koDescendantsComplete (node) {
         const root = node.firstElementChild;
         node.replaceWith(root);
+
+        this.renderer = root.querySelector(".editor__renderer")?.contentWindow;
     }
 
 
