@@ -1,3 +1,5 @@
+import * as sdk from "azure-devops-extension-sdk";
+import { CommonServiceIds } from "azure-devops-extension-api";
 import { log } from "@utils";
 import * as devops from "@utils/devops";
 import * as ko from "knockout";
@@ -90,6 +92,21 @@ export class ViewModel {
 
         await this._loadFiles(node);
         node.isExpanded(!node.isExpanded());
+    }
+
+
+    /**
+     * Downloads the file content.
+     * 
+     * @param {object} node Tree node.
+     */
+    async download(node) {
+        const uri = new URL(node.url);
+        uri.searchParams.append("download", true);
+        uri.searchParams.append("$format", "octetStream");
+
+        const host = await sdk.getService(CommonServiceIds.HostNavigationService);
+        host.openNewWindow(uri.toString());
     }
 
 

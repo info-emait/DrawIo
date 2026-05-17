@@ -49,8 +49,10 @@
                                                'ms-Icon--Page': !item.isFolder
                                            }"></span>
                         </span>
-                        <span class="text-ellipsis body-m"
-                              data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
+                        <a class="bolt-table-link bolt-link no-underline-link" href="javascript:void(0);" tabindex="0"
+                           data-bind="click: $component.download.bind($component, item)">
+                            <span class="text-ellipsis" data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
+                        </a>
                     </span>
                 </div>
             </td>
