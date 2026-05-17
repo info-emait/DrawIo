@@ -42,7 +42,12 @@
                     <span class="bolt-list-cell-child flex-row flex-center bolt-list-cell-text">
                         <span class="tree__icon fluent-icons-enabled">
                             <span class="icon-margin medium repos-folder-icon flex-noshrink fabric-icon"
-                                data-bind="css: { 'ms-Icon--FabricFolderFill': item.isFolder, 'ms-Icon--Page': !item.isFolder }"></span>
+                                data-bind="css: { 
+                                               'ms-Icon--FabricFolderFill': item.isFolder, 
+                                               'ms-Icon--FileImage': !item.isFolder && item.path.endsWith('.png'),
+                                               'ms-Icon--FileTemplate': !item.isFolder && (item.path.endsWith('.svg') || item.path.endsWith('.drawio')),
+                                               'ms-Icon--Page': !item.isFolder
+                                           }"></span>
                         </span>
                         <span class="text-ellipsis body-m"
                               data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
