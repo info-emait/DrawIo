@@ -19,8 +19,9 @@ export class ViewModel {
         log("Tree()", this);
 
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
-        this.files = ko.isObservable(args.files) ? args.files : ko.observableArray(args.files || []);
         this.repoId = ko.isObservable(args.repoId) ? args.repoId : ko.observable(args.repoId || null);
+        this.files = ko.isObservable(args.files) ? args.files : ko.observableArray(args.files || []);
+        this.file = ko.isObservable(args.file) ? args.file : ko.observable(args.file || null);
 
         this.loadFiles = ko.computed(this._loadFiles, this);
     }
@@ -92,6 +93,16 @@ export class ViewModel {
 
         await this._loadFiles(node);
         node.isExpanded(!node.isExpanded());
+    }
+
+
+    /**
+     * Opens file for editting.
+     * 
+     * @param {object} node Tree node.
+     */
+    edit(node) {
+        this.file(node);
     }
 
 

@@ -26,6 +26,9 @@ export class ViewModel {
         this.repos = ko.observableArray([]);
         this.repoId = ko.observable(null);
         this.files = ko.observableArray([]);
+        this.editFile = ko.observable(null);
+
+        this.onEditFile = ko.computed(this._onEditFile, this);
     }
 
     //#endregion
@@ -55,6 +58,15 @@ export class ViewModel {
         const response = await devops.get("/_apis/git/repositories", { includeHidden: true });
 
         this.repos(response?.value || []);
+    }
+
+    /**
+     * Downloads the file content for edit.
+     */
+    async _onEditFile () {
+        const file = this.editFile();
+
+        console.warn("_onEditFile:", file);
     }
 
     //#endregion
@@ -96,6 +108,8 @@ export class ViewModel {
      */
     dispose () {
         log("~Hub()");
+
+        this.onEditFile.dispose();
     };
 
     //#endregion
