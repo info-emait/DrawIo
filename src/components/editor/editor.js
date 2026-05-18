@@ -49,7 +49,8 @@ export class ViewModel {
         if (content) {
             this.renderer.postMessage(JSON.stringify({
                 action: "load",
-                xmlpng: content
+                xml: content
+                //dark: 1
             }), "*");
         }
     }
