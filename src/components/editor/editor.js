@@ -52,7 +52,10 @@ export class ViewModel {
                 xml: content,
                 dark: window.getComputedStyle(document.body).color.indexOf("255") !== -1 ? 1 : 0
             }), "*");
+            return;
         }
+
+        this.isOpened(false);
     }
 
     //#endregion

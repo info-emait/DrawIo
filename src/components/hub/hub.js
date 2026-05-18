@@ -69,9 +69,11 @@ export class ViewModel {
      */
     async _onEditFile () {
         const file = this.editFile();
+        const repoId = this.repoId();
         
-        if (!file) {
+        if (!file || (file.url.indexOf(repoId) === -1)) {
             this.isLoading(false);
+            this.editFile(null);
             this.editFileName("");
             this.editFileContent(null);
             return;
@@ -80,7 +82,7 @@ export class ViewModel {
         this.isLoading(true);
         this.editFileName(file.path.split("/").pop());
 
-        const uri = `/_apis/git/repositories/${this.repoId()}/items`;
+        const uri = `/_apis/git/repositories/${repoId}/items`;
         const query = {
             "path": file.path,
             "$format": "octetStream"
