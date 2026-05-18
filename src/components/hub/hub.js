@@ -22,6 +22,7 @@ export class ViewModel {
         this.isFullScreen = ko.observable(args.isFullScreen);
 
         this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(args.isLoading || false);
+        this.isLess = ko.isObservable(args.isLess) ? args.isLess : ko.observable(args.isLess || false);
         this.user = ko.observable(sdk.getUser());
         this.canUseGit = ko.observable(null);
         this.repos = ko.observableArray([]);

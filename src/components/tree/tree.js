@@ -19,6 +19,7 @@ export class ViewModel {
         log("Tree()", this);
 
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+        this.isHidden = ko.isObservable(args.isHidden) ? args.isHidden : ko.observable(args.isHidden || false);
         this.repoId = ko.isObservable(args.repoId) ? args.repoId : ko.observable(args.repoId || null);
         this.files = ko.isObservable(args.files) ? args.files : ko.observableArray(args.files || []);
         this.file = ko.isObservable(args.file) ? args.file : ko.observable(args.file || null);

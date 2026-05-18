@@ -1,4 +1,4 @@
-<div class="tree flex-grow" data-bind="class: classes">
+<div class="tree flex-grow" data-bind="class: classes, style: { opacity: isHidden() ? 0 : 1 }">
     <!-- ko if: files().length -->
     <div class="flex-row bolt-table-card">
         <div class="bolt-table-container flex-grow v-scroll-auto">

@@ -13,7 +13,7 @@
                         <button class="icon-only bolt-button bolt-icon-button enabled subtle bolt-focus-treatment" tabindex="0" type="button"
                                 data-bind="click: fullscreen, attr: { title: isFullScreen() ? 'Exit full screen mode' : 'Enter full screen mode'}">
                             <span class="fluent-icons-enabled">
-                                <span aria-hidden="true" class="left-icon flex-noshrink fabric-icon medium"
+                                <span class="left-icon flex-noshrink fabric-icon medium"
                                       data-bind="css: { 'ms-Icon--FullScreen': !isFullScreen(), 'ms-Icon--BackToWindow': isFullScreen() }"></span>
                             </span>
                         </button>
@@ -29,22 +29,25 @@
             <!-- /ko -->
             <!-- ko if: canUseGit() === true -->
             <div class="flex-row flex-grow">
-                <div class="flex-column">
-                    <!-- ko if: canUseGit() -->
+                <div class="flex-column" data-bind="style: { width: isLess() ? '50px' : 'auto'}">
+                    <!-- ko if: canUseGit() && !isLess() -->
                         <my-menu params="value: repoId, options: repos, optionsText: 'name', optionsValue: 'id', caption: '... choose repository', icon: 'ChevronDownMed', type: 'subtle', classes: 'bolt-header-command-item-button'"></my-menu>
                     <!-- /ko -->
-                    <my-tree params="repoId: repoId, files: files, file: editFile, classes: 'margin-top-8'"></my-tree>
+                    <my-tree params="repoId: repoId, files: files, file: editFile, isHidden: isLess, classes: 'margin-top-8'"></my-tree>
                     <div class="flex-wrap bolt-button-group flex-row margin-right-16 margin-top-8">
                         <button class="bolt-button bolt-icon-button enabled subtle bolt-focus-treatment flex-grow" tabindex="0" type="button"
-                                style="justify-content: flex-start; visibility: hidden">
+                                style="justify-content: flex-start; visibility: hidden"
+                                data-bind="hidden: isLess">
                             <span class="fluent-icons-enabled">
                                 <span class="left-icon flex-noshrink fabric-icon ms-Icon--Add medium"></span>
                             </span>
                             <span class="bolt-button-text body-m">New diagram</span>
                         </button>
-                        <button class="bolt-button bolt-icon-button enabled subtle bolt-focus-treatment icon-only" tabindex="0" type="button">
+                        <button class="bolt-button bolt-icon-button enabled subtle bolt-focus-treatment icon-only" tabindex="0" type="button"
+                                data-bind="click: () => isLess(!isLess()), attr: { title: isLess() ? 'Show more information' : 'Show less information'}">
                             <span class="fluent-icons-enabled">
-                                <span aria-hidden="true" class="left-icon flex-noshrink fabric-icon medium ms-Icon--DoubleChevronLeft"></span>
+                                <span class="left-icon flex-noshrink fabric-icon medium"
+                                      data-bind="css: { 'ms-Icon--DoubleChevronLeft': !isLess(), 'ms-Icon--DoubleChevronRight': isLess() }"></span>
                             </span>
                         </button>
                     </div>
