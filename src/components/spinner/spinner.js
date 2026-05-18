@@ -16,6 +16,8 @@ export class ViewModel {
         log("Spinner()", this);
 
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+        this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+        this.isVisible = ko.isObservable(args.isVisible) ? args.isVisible : ko.observable(args.isVisible || false);
     }
 
     //#endregion
