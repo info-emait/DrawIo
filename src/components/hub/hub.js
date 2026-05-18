@@ -85,7 +85,8 @@ export class ViewModel {
             "$format": "octetStream"
         }
         const buffer = await devops.get(uri, query, "arrayBuffer");
-        const blob = new Blob([buffer], { type : "image/png" });
+        const contentType = file.path.endsWith(".svg") || file.path.endsWith(".drawio") ? "image/svg+xml" : "image/png";
+        const blob = new Blob([buffer], { type : contentType });
         const reader = new FileReader();
         reader.onloadend = () => this.editFileContent(reader.result);
         reader.readAsDataURL(blob);
