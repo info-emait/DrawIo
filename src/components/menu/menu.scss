@@ -13,7 +13,8 @@
     &__items {
         display: none;
         top: 100%;
-        right: 0;
+        left: 0;
+        z-index: 1;
 
         &--active {
             display: block;

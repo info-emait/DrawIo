@@ -9,9 +9,6 @@
             </div>
             <div class="flex-self-start bolt-header-commandbar bolt-button-group flex-row">
                 <div class="flex-self-start bolt-header-commandbar-button-group flex-row flex-center flex-grow scroll-hidden rhythm-horizontal-8" style="overflow: visible">
-                    <!-- ko if: canUseGit() -->
-                    <my-menu params="value: repoId, options: repos, optionsText: 'name', optionsValue: 'id', caption: '... choose repository', icon: 'ChevronDownMed', classes: 'bolt-header-command-item-button'"></my-menu>
-                    <!-- /ko -->
                     <div class="bolt-header-command-item-button inline-flex-row">
                         <button class="icon-only bolt-button bolt-icon-button enabled subtle bolt-focus-treatment" tabindex="0" type="button"
                                 data-bind="click: fullscreen, attr: { title: isFullScreen() ? 'Exit full screen mode' : 'Enter full screen mode'}">
@@ -32,7 +29,26 @@
             <!-- /ko -->
             <!-- ko if: canUseGit() === true -->
             <div class="flex-row flex-grow">
-                <my-tree params="repoId: repoId, files: files, file: editFile"></my-tree>
+                <div class="flex-column">
+                    <!-- ko if: canUseGit() -->
+                        <my-menu params="value: repoId, options: repos, optionsText: 'name', optionsValue: 'id', caption: '... choose repository', icon: 'ChevronDownMed', type: 'subtle', classes: 'bolt-header-command-item-button'"></my-menu>
+                    <!-- /ko -->
+                    <my-tree params="repoId: repoId, files: files, file: editFile, classes: 'margin-top-8'"></my-tree>
+                    <div class="flex-wrap bolt-button-group flex-row margin-right-16 margin-top-8">
+                        <button class="bolt-button bolt-icon-button enabled subtle bolt-focus-treatment flex-grow" tabindex="0" type="button"
+                                style="justify-content: flex-start; visibility: hidden">
+                            <span class="fluent-icons-enabled">
+                                <span class="left-icon flex-noshrink fabric-icon ms-Icon--Add medium"></span>
+                            </span>
+                            <span class="bolt-button-text body-m">New diagram</span>
+                        </button>
+                        <button class="bolt-button bolt-icon-button enabled subtle bolt-focus-treatment icon-only" tabindex="0" type="button">
+                            <span class="fluent-icons-enabled">
+                                <span aria-hidden="true" class="left-icon flex-noshrink fabric-icon medium ms-Icon--DoubleChevronLeft"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
                 <my-editor params="isLoading: isLoading, content: editFileContent"></my-editor>
             </div>
             <!-- /ko -->
