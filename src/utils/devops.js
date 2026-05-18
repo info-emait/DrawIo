@@ -81,9 +81,10 @@ export async function context() {
  * 
  * @param {string} uri Azure DevOps REST Api url segement.
  * @param {object} query Query string parameters.
+ * @param {string} type The return content type.
  * @returns Promise.
  */
-export async function get(uri, query) {
+export async function get(uri, query, type = "json") {
     const ctx = await context();
     const token = await sdk.getAccessToken();
     const prms = {
@@ -98,7 +99,7 @@ export async function get(uri, query) {
         return null;
     }
 
-    return response.json();
+    return response[type]();
 }
 
 
