@@ -18,6 +18,7 @@ export class ViewModel {
         log("Editor()", this);
 
         this.renderer = null;
+        this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(args.isLoading || false);
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
         this.isInitialized = ko.observable(false);

@@ -2,6 +2,6 @@
     <iframe class="editor__renderer" frameborder="0"
             data-bind="attr: { src: drawioUrl }, css: { 'editor__renderer--initialized' : isInitialized }"></iframe>
     <div class="editor__overlay">
-        <my-spinner></my-spinner>
+        <my-spinner params="isVisible: isLoading"></my-spinner>
     </div>
 </div>

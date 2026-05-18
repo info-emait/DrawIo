@@ -21,6 +21,7 @@ export class ViewModel {
         this.title = ko.observable(args.title || "");
         this.isFullScreen = ko.observable(args.isFullScreen);
 
+        this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(args.isLoading || false);
         this.user = ko.observable(sdk.getUser());
         this.canUseGit = ko.observable(null);
         this.repos = ko.observableArray([]);
@@ -65,7 +66,13 @@ export class ViewModel {
      */
     async _onEditFile () {
         const file = this.editFile();
+        
+        if (!file) {
+            this.isLoading(false);
+            return;
+        }
 
+        this.isLoading(true);
         console.warn("_onEditFile:", file);
     }
 
