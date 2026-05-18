@@ -3,9 +3,11 @@
         <div class="bolt-header-content-area flex-row flex-grow flex-self-stretch">
             <div class="bolt-header-title-area flex-column flex-grow scroll-hidden">
                 <div class="bolt-header-title-row flex-row flex-baseline">
-                    <div aria-level="1" class="bolt-header-title title-m l" role="heading" data-bind="text: title"></div>
+                    <div class="bolt-header-title title-m l flex-baseline flex-row" role="heading">
+                        <div data-bind="text: title"></div>
+                        <div class="bolt-header-description body-m secondary-text" data-bind="html: '&nbsp;' + editFileName(), visible: editFileName().length"></div>
+                    </div>
                 </div>
-                <div class="bolt-header-description body-m secondary-text" data-bind="text: editFileName, visible: editFileName().length"></div>
             </div>
             <div class="flex-self-start bolt-header-commandbar bolt-button-group flex-row">
                 <div class="flex-self-start bolt-header-commandbar-button-group flex-row flex-center flex-grow scroll-hidden rhythm-horizontal-8" style="overflow: visible">
