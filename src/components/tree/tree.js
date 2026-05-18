@@ -49,9 +49,10 @@ export class ViewModel {
             "$format": "json",
             "recursionLevel": "oneLevel"
         });
+        const exts = [ "drawio", "png", "svg" ];
         const files = (response?.value || [])
             .filter((f) => {
-                return (f.path !== "/") && (f.path !== parent?.path);
+                return (f.path !== "/") && (f.path !== parent?.path) && (exts.includes(f.path.split(".").pop()) || f.isFolder);
             })
             .sort((f1, f2) => ((f2.isFolder || false) - (f1.isFolder || false)) || f1.path.localeCompare(f2.path))
             .map((f) => {
