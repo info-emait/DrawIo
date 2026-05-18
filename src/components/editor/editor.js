@@ -49,8 +49,8 @@ export class ViewModel {
         if (content) {
             this.renderer.postMessage(JSON.stringify({
                 action: "load",
-                xml: content
-                //dark: 1
+                xml: content,
+                dark: window.getComputedStyle(document.body).color.indexOf("255") !== -1 ? 1 : 0
             }), "*");
         }
     }
