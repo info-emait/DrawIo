@@ -18,13 +18,40 @@ export class ViewModel {
         log("Editor()", this);
 
         this.renderer = null;
+        this.isOpened = ko.observable(false);
         this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(args.isLoading || false);
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
         this.isInitialized = ko.observable(false);
         this.content = ko.isObservable(args.content) ? args.content : ko.observable(args.content || null);
 
+        this.editContent = ko.computed(this._editContent, this);
+
         window.addEventListener("message", this.onMessage.bind(this));
+    }
+
+    //#endregion
+
+
+    //#region [ Methods : Private ]
+
+    /**
+     * Opens the content in the editor.
+     */
+    _editContent () {
+        const isInitialized = this.isInitialized();
+        const content = this.content();
+
+        if (!isInitialized) {
+            return;
+        }
+
+        if (content) {
+            this.renderer.postMessage(JSON.stringify({
+                action: "load",
+                xmlpng: content
+            }), "*");
+        }
     }
 
     //#endregion
@@ -37,6 +64,15 @@ export class ViewModel {
      */
     onInit () {
         this.isInitialized(true);
+    }
+
+
+    /**
+     * Event handler for the load event.
+     */
+    onLoad () {
+        this.isLoading(false);
+        this.isOpened(true);
     }
 
 
@@ -93,6 +129,8 @@ export class ViewModel {
      */
     dispose () {
         log("~Editor()");
+
+        this.editContent.dispose();
     };
 
     //#endregion
