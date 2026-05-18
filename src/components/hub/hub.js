@@ -28,6 +28,7 @@ export class ViewModel {
         this.repoId = ko.observable(null);
         this.files = ko.observableArray([]);
         this.editFile = ko.observable(null);
+        this.editFileName = ko.observable("");
 
         this.onEditFile = ko.computed(this._onEditFile, this);
     }
@@ -69,10 +70,12 @@ export class ViewModel {
         
         if (!file) {
             this.isLoading(false);
+            this.editFileName("");
             return;
         }
 
         this.isLoading(true);
+        this.editFileName(file.path.split("/").pop());
         console.warn("_onEditFile:", file);
     }
 
