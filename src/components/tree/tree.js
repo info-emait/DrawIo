@@ -113,6 +113,10 @@ export class ViewModel {
      * @param {object} node Tree node.
      */
     async download(node) {
+        if (node.isFolder) {
+            return;
+        }
+
         const uri = new URL(node.url);
         uri.searchParams.append("download", true);
         uri.searchParams.append("$format", "octetStream");
