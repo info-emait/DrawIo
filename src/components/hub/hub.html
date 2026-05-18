@@ -33,7 +33,7 @@
             <!-- ko if: canUseGit() === true -->
             <div class="flex-row flex-grow">
                 <my-tree params="repoId: repoId, files: files, file: editFile"></my-tree>
-                <my-editor params="isLoading: isLoading"></my-editor>
+                <my-editor params="isLoading: isLoading, content: editFileContent"></my-editor>
             </div>
             <!-- /ko -->
         </div>

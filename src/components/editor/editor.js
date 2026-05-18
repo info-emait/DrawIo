@@ -22,6 +22,7 @@ export class ViewModel {
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
         this.isInitialized = ko.observable(false);
+        this.content = ko.isObservable(args.content) ? args.content : ko.observable(args.content || null);
 
         window.addEventListener("message", this.onMessage.bind(this));
     }

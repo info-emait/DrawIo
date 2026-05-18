@@ -29,6 +29,7 @@ export class ViewModel {
         this.files = ko.observableArray([]);
         this.editFile = ko.observable(null);
         this.editFileName = ko.observable("");
+        this.editFileContent = ko.observable(null);
 
         this.onEditFile = ko.computed(this._onEditFile, this);
     }
@@ -71,12 +72,23 @@ export class ViewModel {
         if (!file) {
             this.isLoading(false);
             this.editFileName("");
+            this.editFileContent(null);
             return;
         }
 
         this.isLoading(true);
         this.editFileName(file.path.split("/").pop());
-        console.warn("_onEditFile:", file);
+
+        const uri = `/_apis/git/repositories/${this.repoId()}/items`;
+        const query = {
+            "path": file.path,
+            "$format": "octetStream"
+        }
+        const buffer = await devops.get(uri, query, "arrayBuffer");
+        const blob = new Blob([buffer], { type : "image/png" });
+        const reader = new FileReader();
+        reader.onloadend = () => this.editFileContent(reader.result);
+        reader.readAsDataURL(blob);
     }
 
     //#endregion
