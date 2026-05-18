@@ -77,6 +77,15 @@ export class ViewModel {
 
 
     /**
+     * Event handler for the exit event
+     */
+    onExit () {
+        this.content(null);
+        this.isOpened(false);
+    }
+
+
+    /**
      * Event handler for the message event.
      * 
      * @param {object} e Arguments.
