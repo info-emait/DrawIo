@@ -11,8 +11,19 @@
             </div>
             <div class="flex-self-start bolt-header-commandbar bolt-button-group flex-row">
                 <div class="flex-self-start bolt-header-commandbar-button-group flex-row flex-center flex-grow scroll-hidden rhythm-horizontal-8" style="overflow: visible">
+                    <!-- ko if: editFileContent() !== null -->
                     <div class="bolt-header-command-item-button inline-flex-row">
-                        <button class="icon-only bolt-button bolt-icon-button enabled subtle bolt-focus-treatment" tabindex="0" type="button"
+                        <button class="bolt-button bolt-icon-button primary bolt-focus-treatment" role="menuitem" tabindex="0" type="button"
+                                data-bind="css: { 'disabled': !editFileIsDirty() }">
+                            <span class="fluent-icons-enabled">
+                                <span class="left-icon flex-noshrink fabric-icon ms-Icon--Save medium"></span>
+                            </span>
+                            <span class="bolt-button-text body-m">Commit</span>
+                        </button>
+                    </div>
+                    <!-- /ko -->
+                    <div class="bolt-header-command-item-button inline-flex-row">
+                        <button class="icon-only bolt-button bolt-icon-button subtle bolt-focus-treatment" tabindex="0" type="button"
                                 data-bind="click: fullscreen, attr: { title: isFullScreen() ? 'Exit full screen mode' : 'Enter full screen mode'}">
                             <span class="fluent-icons-enabled">
                                 <span class="left-icon flex-noshrink fabric-icon medium"
@@ -54,7 +65,7 @@
                         </button>
                     </div>
                 </div>
-                <my-editor params="isLoading: isLoading, content: editFileContent"></my-editor>
+                <my-editor params="isLoading: isLoading, content: editFileContent, isDirty: editFileIsDirty"></my-editor>
             </div>
             <!-- /ko -->
         </div>

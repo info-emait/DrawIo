@@ -20,6 +20,7 @@ export class ViewModel {
         this.renderer = null;
         this.isOpened = ko.observable(false);
         this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(args.isLoading || false);
+        this.isDirty = ko.isObservable(args.isDirty) ? args.isDirty : ko.observable(args.isDirty || false);
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
         this.isInitialized = ko.observable(false);
@@ -50,7 +51,8 @@ export class ViewModel {
             this.renderer.postMessage(JSON.stringify({
                 action: "load",
                 xml: content,
-                dark: window.getComputedStyle(document.body).color.indexOf("255") !== -1 ? 1 : 0
+                dark: window.getComputedStyle(document.body).color.indexOf("255") !== -1 ? 1 : 0,
+                autosave: 1
             }), "*");
             return;
         }
@@ -86,6 +88,14 @@ export class ViewModel {
     onExit () {
         this.content(null);
         this.isOpened(false);
+    }
+
+
+    /**
+     * Event handler for the autosave event.
+     */
+    onAutosave () {
+        this.isDirty(true);
     }
 
 

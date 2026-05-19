@@ -31,6 +31,7 @@ export class ViewModel {
         this.editFile = ko.observable(null);
         this.editFileName = ko.observable("");
         this.editFileContent = ko.observable(null);
+        this.editFileIsDirty = ko.observable(false);
 
         this.onEditFile = ko.computed(this._onEditFile, this);
     }
@@ -76,6 +77,7 @@ export class ViewModel {
             this.editFile(null);
             this.editFileName("");
             this.editFileContent(null);
+            this.editFileIsDirty(false);
             return;
         }
 
