@@ -16,6 +16,7 @@ export class ViewModel {
         log("Commit()", this);
 
         this.dialog = args.dialog;
+        console.warn("Args", args)
     }
 
     //#endregion

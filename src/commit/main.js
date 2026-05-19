@@ -22,7 +22,10 @@ ready(async () => {
 
     // Create application model
     const model = {
-        dialog: config.panel
+        dialog: config.panel,
+        file: config.file,
+        content: config.content,
+        repo: config.repo
     };
     
     sdk.register("drawio-commit", () => model);
