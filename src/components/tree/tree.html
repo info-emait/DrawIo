@@ -49,10 +49,15 @@
                                                'ms-Icon--Page': !item.isFolder
                                            }"></span>
                         </span>
+                        <!-- ko ifnot: item.isFolder -->
                         <a class="bolt-table-link bolt-link no-underline-link" href="javascript:void(0);" tabindex="0"
                            data-bind="click: $component.download.bind($component, item)">
                             <span class="text-ellipsis" data-bind="text: item.path.replace(parent.path, '').replace(/^\//,'')"></span>
                         </a>
+                        <!-- /ko -->
+                        <!-- ko if: item.isFolder -->
+                        <span class="text-ellipsis body-m" data-bind="text: item.path.replace(parent.path, '').replace(/^\//,''), click: $component.expand.bind($component, item)"></span>
+                        <!-- /ko -->
                     </span>
                 </div>
             </td>
