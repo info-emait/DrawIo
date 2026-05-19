@@ -22,22 +22,20 @@ export class ViewModel {
 
         this.comment = ko.observable(`Updated ${this.file.path.split("/").pop()}`);
         this.commentError = ko.observable("");
+
+        this.isValid = ko.computed(() => {
+            const comment = this.comment() || "";
+            
+            this.commentError(!comment.length ? "Comment cannot be empty" : "");
+
+            return !this.commentError().length;
+        });
     }
 
     //#endregion
 
 
     //#region [ Methods : Public ]
-
-    /**
-     * Validates form before sending.
-     */
-    isValid () {
-        this.commentError(!this.comment().length ? "Comment cannot be empty" : "");
-
-        return !this.nameError().length
-    }
-
 
     /**
      * Cancels commit.
@@ -64,6 +62,8 @@ export class ViewModel {
      */
     dispose () {
         log("~Commit()");
+
+        this.isValid.dispose();
     };
 
     //#endregion

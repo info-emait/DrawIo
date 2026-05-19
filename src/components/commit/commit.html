@@ -9,7 +9,8 @@
                 data-bind="click: cancel">
             <span class="bolt-button-text body-m">Cancel</span>
         </button>
-        <button class="bolt-button primary bolt-focus-treatment" role="button" tabindex="0" type="button">
+        <button class="bolt-button primary bolt-focus-treatment" role="button" tabindex="0" type="button"
+                data-bind="css: { 'disabled': !isValid() }">
             <span class="bolt-button-text body-m">Commit</span>
         </button>
     </div>
