@@ -25,8 +25,11 @@ export class ViewModel {
         this.drawioUrl = ko.observable(import.meta.env.VITE_DRAWIO_URL);
         this.isInitialized = ko.observable(false);
         this.content = ko.isObservable(args.content) ? args.content : ko.observable(args.content || null);
+        this.exportId = ko.isObservable(args.exportId) ? args.exportId : ko.observable(args.exportId || null);
+        this.fileName = ko.isObservable(args.fileName) ? args.fileName : ko.observable(args.fileName || "");
 
         this.editContent = ko.computed(this._editContent, this);
+        this.exportContent = ko.computed(this._exportContent, this);
 
         window.addEventListener("message", this.onMessage.bind(this));
     }
@@ -58,6 +61,28 @@ export class ViewModel {
         }
 
         this.isOpened(false);
+    }
+
+
+    /**
+     * Ask renderer for export data.
+     */
+    _exportContent () {
+        const exportId = this.exportId();
+        const isInitialized = this.isInitialized();
+        const fileName = this.fileName();
+
+        if (!exportId || !isInitialized || !fileName) {
+            return;
+        }
+
+        const ext = fileName.split(".").pop();
+        this.renderer.postMessage(JSON.stringify({ 
+            action: "export", 
+            format: ext === "png" ? "xmlpng" :
+                    ext === "svg" ? "xmlsvg" :
+                    ext === "html" ? "html2" : "xml"
+        }), "*");
     }
 
     //#endregion
@@ -100,6 +125,14 @@ export class ViewModel {
 
 
     /**
+     * Event handler for the export event.
+     */
+    onExport (e) {
+        console.warn("onExport: ", e);
+    }
+
+
+    /**
      * Event handler for the message event.
      * 
      * @param {object} e Arguments.
@@ -121,7 +154,7 @@ export class ViewModel {
             const fnc = this[fncKey];
 
             if (typeof(fnc) === "function") {
-                fnc.apply(this, [msg.data]);
+                fnc.apply(this, [msg]);
                 return;
             }
 
@@ -154,6 +187,7 @@ export class ViewModel {
         log("~Editor()");
 
         this.editContent.dispose();
+        this.exportContent.dispose();
     };
 
     //#endregion

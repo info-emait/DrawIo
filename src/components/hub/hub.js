@@ -32,6 +32,7 @@ export class ViewModel {
         this.editFileName = ko.observable("");
         this.editFileContent = ko.observable(null);
         this.editFileIsDirty = ko.observable(false);
+        this.editFileExportId = ko.observable(null);
 
         this.onEditFile = ko.computed(this._onEditFile, this);
     }
@@ -78,6 +79,7 @@ export class ViewModel {
             this.editFileName("");
             this.editFileContent(null);
             this.editFileIsDirty(false);
+            this.editFileIsDirty(null);
             return;
         }
 
@@ -121,22 +123,23 @@ export class ViewModel {
      * Creates commit with current user changes.
      */
     async commit () {
-        const extension = sdk.getExtensionContext();
-        const host = await sdk.getService(CommonServiceIds.HostPageLayoutService);
-        const repoId = this.repoId();
-        const repos = this.repos();
+        this.editFileExportId(crypto.randomUUID());
+        // const extension = sdk.getExtensionContext();
+        // const host = await sdk.getService(CommonServiceIds.HostPageLayoutService);
+        // const repoId = this.repoId();
+        // const repos = this.repos();
 
-        host.openPanel(`${extension.id}.${extension.extensionId}-commit`, {
-            title: "Commit",
-            configuration: {
-                file: this.editFile(),
-                content: this.editFileContent(),
-                repo: repos.find((r) => r.id === repoId)
-            },
-            onClose: (result) => {
-                console.warn("Commit result: ", result);
-            }
-        });
+        // host.openPanel(`${extension.id}.${extension.extensionId}-commit`, {
+        //     title: "Commit",
+        //     configuration: {
+        //         file: this.editFile(),
+        //         content: this.editFileContent(),
+        //         repo: repos.find((r) => r.id === repoId)
+        //     },
+        //     onClose: (result) => {
+        //         console.warn("Commit result: ", result);
+        //     }
+        // });
     }
 
 
