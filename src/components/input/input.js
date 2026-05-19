@@ -29,6 +29,9 @@ export class ViewModel {
         this.info = ko.isObservable(args.info) ? args.info : ko.observable(args.info || "");
         this.error = ko.isObservable(args.error) ? args.error : ko.observable(args.error || "");
         this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+        this.isMultiline = args.isMultiline || false;
+        this.isDefaultWidth = args.isDefaultWidth || false;
+        this.isFullWidth = args.isFullWidth || false;
 
         this.optionsInfoValue = ko.computed(function() {
             const type = this.type;

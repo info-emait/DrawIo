@@ -1,9 +1,18 @@
 <div class="input flex-column" data-bind="class: classes">
     <label class="bolt-formitem-label body-m" data-bind="html: label"></label>
-    <div class="flex-column">
-        <div class="bolt-textfield bolt-textfield-default-width flex-row flex-center focus-treatment"
-                data-bind="css: { 'bolt-textfield-error': error().length }">
+    <div class="flex-column full-width" data-bind="css: { 'full-width': isFullWidth }">
+        <div class="bolt-textfield flex-row flex-center focus-treatment"
+                data-bind="css: { 'bolt-textfield-error': error().length, 'bolt-textfield-default-width': isDefaultWidth, 'full-width': isFullWidth }">
             <!-- ko ifnot: type === 'select' -->
+            <!-- ko if: isMultiline -->
+            <textarea rows="5" class="bolt-textfield-input flex-grow" autocomplete="off"
+                        data-bind="attr: { tabindex: tabindex },
+                                   textInput: value,
+                                   css: { 
+                                        'bolt-textfield-input-with-suffix': error().length 
+                                   }"></textarea>
+            <!-- /ko -->
+            <!-- ko ifnot: isMultiline -->
             <input autocomplete="off" class="bolt-textfield-input flex-grow"
                     data-bind="attr: { 
                                     type: type,
@@ -15,6 +24,7 @@
                                css: { 
                                     'bolt-textfield-input-with-suffix': error().length 
                                }" />
+            <!-- /ko -->
             <!-- /ko -->
             <!-- ko if: type === 'select' -->
             <select class="bolt-textfield-input flex-grow"

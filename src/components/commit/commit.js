@@ -16,13 +16,28 @@ export class ViewModel {
         log("Commit()", this);
 
         this.dialog = args.dialog;
-        console.warn("Args", args)
+        this.file = args.file;
+        this.content = args.content;
+        this.repo = args.repo;
+
+        this.comment = ko.observable(`Updated ${this.file.path.split("/").pop()}`);
+        this.commentError = ko.observable("");
     }
 
     //#endregion
 
 
     //#region [ Methods : Public ]
+
+    /**
+     * Validates form before sending.
+     */
+    isValid () {
+        this.commentError(!this.comment().length ? "Comment cannot be empty" : "");
+
+        return !this.nameError().length
+    }
+
 
     /**
      * Cancels commit.

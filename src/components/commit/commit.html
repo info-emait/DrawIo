@@ -1,6 +1,8 @@
 <div class="commit flex-column">
-    <div class="flex-row flex-grow full-width v-scroll-hidden margin-bottom-16">
-        CONTENT
+    <div class="flex-column flex-grow v-scroll-hidden margin-bottom-16">
+        <div class="flex-row full-width">
+            <my-input params="label: 'Comment:', value: comment, error: commentError, type: 'text', isMultiline: true, isFullWidth: true, tabindex: 1, classes: 'flex-grow'"></my-input>
+        </div>
     </div>
     <div class="flex-wrap bolt-button-group flex-row margin-bottom-16 justify-end">
         <button class="bolt-button bolt-focus-treatment" role="button" tabindex="0" type="button"

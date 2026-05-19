@@ -3,6 +3,7 @@ import * as ko from "knockout";
 import { log, ready } from "@utils";
 
 import "@components/commit/component.js";
+import "@components/input/component.js";
 
 //#region [ Start ]
 

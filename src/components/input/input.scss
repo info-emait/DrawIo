@@ -1,7 +1,15 @@
 @use "@styles/_functions.scss" as *;
 @use "azure-devops-ui/Components/TextField/TextField.scss";
+@use "azure-devops-ui/Components/FormItem/FormItem.scss";
 
 .input {
+    .bolt-textfield {
+        input,
+        textarea {
+            font-size: rem(14px);
+        }
+    }
+
     &--number {
         .bolt-textfield {
             input[type=number] {
