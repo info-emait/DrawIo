@@ -23,12 +23,17 @@ export class ViewModel {
         this.comment = ko.observable(`Updated ${this.file.path.split("/").pop()}`);
         this.commentError = ko.observable("");
 
+        this.branch = ko.observable(this.repo.defaultBranch.split("/").pop());
+        this.branchError = ko.observable("");
+
         this.isValid = ko.computed(() => {
             const comment = this.comment() || "";
+            const branch = this.branch() || "";
             
-            this.commentError(!comment.length ? "Comment cannot be empty" : "");
+            this.commentError(!comment.length ? "Comment cannot be empty." : "");
+            this.branchError(!branch.length ? "The branch name cannot be empty." : "");
 
-            return !this.commentError().length;
+            return !this.commentError().length && !this.branchError().length;
         });
     }
 
