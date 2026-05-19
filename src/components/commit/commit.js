@@ -14,12 +14,22 @@ export class ViewModel {
      */
     constructor (args = {}) {
         log("Commit()", this);
+
+        this.dialog = args.dialog;
     }
 
     //#endregion
 
 
     //#region [ Methods : Public ]
+
+    /**
+     * Cancels commit.
+     */
+    cancel () {
+        this.dialog.close(false);
+    }
+
 
     /**
      * Direct method to receive a descendantsComplete notification.

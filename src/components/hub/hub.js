@@ -114,7 +114,25 @@ export class ViewModel {
         const ctx = await devops.context();
         host.navigate(`${ctx.baseUrl}/${ctx.collection.name}/${ctx.project.name}/_apps/hub/${ctx.extension.id}.${ctx.extension.extensionId}-hub?${new URLSearchParams(query).toString()}`);
         this.isFullScreen(!this.isFullScreen());
-    }    
+    }
+
+
+    /**
+     * Creates commit with current user changes.
+     */
+    async commit () {
+        const extension = sdk.getExtensionContext();
+        const host = await sdk.getService(CommonServiceIds.HostPageLayoutService);
+        
+        host.openPanel(`${extension.id}.${extension.extensionId}-commit`, {
+            title: "Commit",
+            configuration: {
+            },
+            onClose: (result) => {
+                console.warn("Commit result: ", result);
+            }
+        });
+    }
 
 
     /**
