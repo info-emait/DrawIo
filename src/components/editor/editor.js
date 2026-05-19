@@ -26,6 +26,7 @@ export class ViewModel {
         this.isInitialized = ko.observable(false);
         this.content = ko.isObservable(args.content) ? args.content : ko.observable(args.content || null);
         this.exportId = ko.isObservable(args.exportId) ? args.exportId : ko.observable(args.exportId || null);
+        this.exportData = ko.isObservable(args.exportData) ? args.exportData : ko.observable(args.exportData || null);
         this.fileName = ko.isObservable(args.fileName) ? args.fileName : ko.observable(args.fileName || "");
 
         this.editContent = ko.computed(this._editContent, this);
@@ -128,7 +129,7 @@ export class ViewModel {
      * Event handler for the export event.
      */
     onExport (e) {
-        console.warn("onExport: ", e);
+        this.exportData(e);
     }
 
 

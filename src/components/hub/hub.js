@@ -33,8 +33,10 @@ export class ViewModel {
         this.editFileContent = ko.observable(null);
         this.editFileIsDirty = ko.observable(false);
         this.editFileExportId = ko.observable(null);
+        this.editFileExport = ko.observable(null);
 
         this.onEditFile = ko.computed(this._onEditFile, this);
+        this.onEditFileExport = ko.computed(this._onEditFileExport, this);
     }
 
     //#endregion
@@ -79,7 +81,8 @@ export class ViewModel {
             this.editFileName("");
             this.editFileContent(null);
             this.editFileIsDirty(false);
-            this.editFileIsDirty(null);
+            this.editFileExportId(null);
+            this.editFileExport(null);
             return;
         }
 
@@ -97,6 +100,19 @@ export class ViewModel {
         const reader = new FileReader();
         reader.onloadend = () => this.editFileContent(reader.result);
         reader.readAsDataURL(blob);
+    }
+
+
+    /**
+     * Opens commit dialog.
+     */
+    async _onEditFileExport() {
+        const fileExport = this.editFileExport();
+        if (!fileExport) {
+            return;
+        }
+
+        console.warn("_onEditFileExport: ", fileExport);
     }
 
     //#endregion
@@ -164,6 +180,7 @@ export class ViewModel {
         log("~Hub()");
 
         this.onEditFile.dispose();
+        this.onEditFileExport.dispose();
     };
 
     //#endregion
