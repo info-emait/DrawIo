@@ -112,7 +112,23 @@ export class ViewModel {
             return;
         }
 
-        console.warn("_onEditFileExport: ", fileExport);
+        const extension = sdk.getExtensionContext();
+        const host = await sdk.getService(CommonServiceIds.HostPageLayoutService);
+        const repoId = this.repoId();
+        const repos = this.repos();
+
+        host.openPanel(`${extension.id}.${extension.extensionId}-commit`, {
+            title: "Commit",
+            configuration: {
+                file: this.editFile(),
+                content: this.editFileContent(),
+                repo: repos.find((r) => r.id === repoId),
+                data: fileExport
+            },
+            onClose: (result) => {
+                console.warn("Commit result: ", result);
+            }
+        });        
     }
 
     //#endregion
@@ -140,22 +156,6 @@ export class ViewModel {
      */
     async commit () {
         this.editFileExportId(crypto.randomUUID());
-        // const extension = sdk.getExtensionContext();
-        // const host = await sdk.getService(CommonServiceIds.HostPageLayoutService);
-        // const repoId = this.repoId();
-        // const repos = this.repos();
-
-        // host.openPanel(`${extension.id}.${extension.extensionId}-commit`, {
-        //     title: "Commit",
-        //     configuration: {
-        //         file: this.editFile(),
-        //         content: this.editFileContent(),
-        //         repo: repos.find((r) => r.id === repoId)
-        //     },
-        //     onClose: (result) => {
-        //         console.warn("Commit result: ", result);
-        //     }
-        // });
     }
 
 

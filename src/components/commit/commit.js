@@ -19,6 +19,7 @@ export class ViewModel {
         this.file = args.file;
         this.content = args.content;
         this.repo = args.repo;
+        this.data = args.data;
 
         this.comment = ko.observable(`Updated ${this.file.path.split("/").pop()}`);
         this.commentError = ko.observable("");

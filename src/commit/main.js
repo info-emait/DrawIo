@@ -26,7 +26,8 @@ ready(async () => {
         dialog: config.panel,
         file: config.file,
         content: config.content,
-        repo: config.repo
+        repo: config.repo,
+        data: config.data
     };
     
     sdk.register("drawio-commit", () => model);
