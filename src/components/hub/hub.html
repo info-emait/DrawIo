@@ -14,7 +14,7 @@
                     <!-- ko if: editFileContent() !== null -->
                     <div class="bolt-header-command-item-button inline-flex-row">
                         <button class="bolt-button bolt-icon-button primary bolt-focus-treatment" role="menuitem" tabindex="0" type="button"
-                                data-bind="css: { 'disabled': !editFileIsDirty() }">
+                                data-bind="click: commit, css: { 'disabled': !editFileIsDirty() }">
                             <span class="fluent-icons-enabled">
                                 <span class="left-icon flex-noshrink fabric-icon ms-Icon--Save medium"></span>
                             </span>

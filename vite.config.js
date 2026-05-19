@@ -15,7 +15,8 @@ export default defineConfig(({ mode }) => {
             cssMinify: isDebug ? false : "esbuild",
             rolldownOptions: {
                 input: {
-                    hub: resolve(__dirname, "hub.html")
+                    hub: resolve(__dirname, "hub.html"),
+                    commit: resolve(__dirname, "commit.html")
                 }
             }
         },

@@ -82,9 +82,17 @@
                 "featureId": "#{Publisher}#.#{Id}#.#{Id}#-feature"
             }
         }]
+    }, {
+        "id": "#{Id}#-commit",
+        "type": "ms.vss-web.external-content",
+        "description": "Commit dialog",
+        "properties": {
+            "uri": "commit.html?v=#{Version}#"
+        }
     }],
     "files": [
         { "path": "hub.html", "addressable": true },
+        { "path": "commit.html", "addressable": true },
         { "path": "img", "addressable": true },
         { "path": "assets", "addressable": true }
     ],
